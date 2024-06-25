@@ -1,0 +1,2 @@
+To test the encoder, pre-computed serial bits were input to verify the shift register's functionality against expected values. 
+Following this initial test, the decoder underwent testing using a serializer with incrementing 16-bit inputs to simulate real-world system conditions.

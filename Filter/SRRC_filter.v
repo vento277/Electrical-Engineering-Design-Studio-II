@@ -1,0 +1,66 @@
+module SRRC_filter (clk, reset, symb_in, symb_out);
+	input clk, reset;
+	input signed[7:0] symb_in;
+	output reg signed[7:0] symb_out;
+	wire signed [15:0] coeff [0:20];
+	wire signed [23:0] sum [0:20];
+	wire signed [7:0] buffer [0:20];
+	wire signed [23:0] acc;
+    integer i;
+
+	// Instantiate 21 tap modules
+    tap tap0 (reset, clk, symb_in, buffer[0], coeff[0], 0, sum[0]);
+    tap tap1 (reset, clk, buffer[0], buffer[1], coeff[1], sum[0], sum[1]);
+    tap tap2 (reset, clk, buffer[1], buffer[2], coeff[2], sum[1], sum[2]);
+    tap tap3 (reset, clk, buffer[2], buffer[3], coeff[3], sum[2], sum[3]);
+    tap tap4 (reset, clk, buffer[3], buffer[4], coeff[4], sum[3], sum[4]);
+    tap tap5 (reset, clk, buffer[4], buffer[5], coeff[5], sum[4], sum[5]);
+    tap tap6 (reset, clk, buffer[5], buffer[6], coeff[6], sum[5], sum[6]);
+    tap tap7 (reset, clk, buffer[6], buffer[7], coeff[7], sum[6], sum[7]);
+    tap tap8 (reset, clk, buffer[7], buffer[8], coeff[8], sum[7], sum[8]);
+    tap tap9 (reset, clk, buffer[8], buffer[9], coeff[9], sum[8], sum[9]);
+    tap tap10 (reset, clk, buffer[9], buffer[10], coeff[10], sum[9], sum[10]);
+    tap tap11 (reset, clk, buffer[10], buffer[11], coeff[11], sum[10], sum[11]);
+    tap tap12 (reset, clk, buffer[11], buffer[12], coeff[12], sum[11], sum[12]);
+    tap tap13 (reset, clk, buffer[12], buffer[13], coeff[13], sum[12], sum[13]);
+    tap tap14 (reset, clk, buffer[13], buffer[14], coeff[14], sum[13], sum[14]);
+    tap tap15 (reset, clk, buffer[14], buffer[15], coeff[15], sum[14], sum[15]);
+    tap tap16 (reset, clk, buffer[15], buffer[16], coeff[16], sum[15], sum[16]);
+    tap tap17 (reset, clk, buffer[16], buffer[17], coeff[17], sum[16], sum[17]);
+    tap tap18 (reset, clk, buffer[17], buffer[18], coeff[18], sum[17], sum[18]);
+    tap tap19 (reset, clk, buffer[18], buffer[19], coeff[19], sum[18], sum[19]);
+    tap tap20 (reset, clk, buffer[19], buffer[20], coeff[20], sum[19], acc);
+
+    always @(posedge clk) begin
+        if (reset) begin
+            symb_out <= 8'b0;
+        end else begin
+				symb_out <= acc[23:16];
+        end
+    end
+	 
+	// LUT for filter coefficients in 1.14 fibufferfered-point
+	assign coeff[0] = -16'sd 171;
+	assign coeff[1] = 16'sd 265;
+	assign coeff[2] = 16'sd 453;
+	assign coeff[3] = -16'sd 85;
+	assign coeff[4] = -16'sd 1145;
+	assign coeff[5] = -16'sd 1604;
+	assign coeff[6] = -16'sd 2;
+	assign coeff[7] = 16'sd 4318;
+	assign coeff[8] = 16'sd 10364;
+	assign coeff[9] = 16'sd 15720;
+	assign coeff[10] = 16'sd 17862;
+	assign coeff[11] = 16'sd 15720;
+	assign coeff[12] = 16'sd 10364;
+	assign coeff[13] = 16'sd 4318;
+	assign coeff[14] = -16'sd 2;
+	assign coeff[15] = -16'sd 1604;
+	assign coeff[16] = -16'sd 1145;
+	assign coeff[17] = -16'sd 85;
+	assign coeff[18] = 16'sd 453;
+	assign coeff[19] = 16'sd 265;
+	assign coeff[20] = -16'sd 171;
+
+
+endmodule

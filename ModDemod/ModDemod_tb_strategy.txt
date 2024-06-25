@@ -1,0 +1,3 @@
+To test the modulator, inputs '00', '01', '10', and '11' were used to verify whether the 2-bit inputs conform to the QPSK modulation scheme across four constellation points.
+
+For testing the demodulator, the corresponding constellation points were inputted to verify if the 2 bits are recovered.
