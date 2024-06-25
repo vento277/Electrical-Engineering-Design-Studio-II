@@ -43,7 +43,7 @@ Demodulation is the process of extracting the original digital data from the rec
 2. **Data Transmission:** Modulation techniques facilitate high-speed data transmission rates, enabling the transfer of large volumes of digital information quickly and efficiently across communication networks. This capability is essential for applications requiring real-time data exchange, such as video streaming, online gaming, and teleconferencing.
 
 ### Design Decisions
-Detailed reasoning can be found in the report (pg.11).
+Detailed reasoning can be found in the report (page 11).
 | Subsystem      | Technique |
 | ----------- | ----------- |
 |Error Encoding|Convolutional|
@@ -56,5 +56,10 @@ Detailed reasoning can be found in the report (pg.11).
 #### Error Decoding, Viterbi
 #### Modulation, QPSK
 #### Demodulation, QPSK
+
+### Potencial Improvements
+1. Deploy soft decision decoding. Soft decision decoding involves considering the likelihood (often represented as log-likelihood ratios or LLRs) of each bit instead of definitively assigning bits based on a threshold. It has shown significant error correction performance gains in both our simulation and literature reviews.
+2. Deploy interleaver. Convolutional codes, while effective against random errors, can struggle with burst errors (consecutive errors within a short span). Interleaving can spread burst errors across the data stream, thereby making them appear as random errors to the decoder.
+
 
 
