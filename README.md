@@ -25,6 +25,8 @@ communication system for audio and data communication. The following sections de
 project based on the requirements and constraints. Your team will be assigned team-specific set
 of conditions.*
 
+My Role: Developed the convolutional encoding, viterbi decoding and QPSK mod/demodulation subsystems.
+
 **Design Requirements**
 
 Our team was assigned to scenario F.
